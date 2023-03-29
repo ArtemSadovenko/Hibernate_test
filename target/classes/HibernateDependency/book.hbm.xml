@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="com.journaldev.hibernate.model">
+    <class name="Book" table="book" >
+        <id name="id" type="long">
+            <column name="book_id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <set name="pages" table="pages" fetch="select">
+            <key>
+                <column name="book_id" not-null="true"></column>
+            </key>
+            <one-to-many class="Page"/>
+        </set>
+    </class>
+
+</hibernate-mapping>
